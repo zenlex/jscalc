@@ -1,6 +1,13 @@
 import React from 'react';
+import { combineReducers, createStore } from 'redux'
 import logo from './logo.svg';
 import './App.css';
+import * as reducers from './reducers'
+
+const calcApp = combineReducers(reducers)
+const store = createStore(calcApp)
+
+
 
 function App() {
   return (
