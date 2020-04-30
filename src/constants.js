@@ -7,11 +7,11 @@ const EQUALS = 'EQUALS';
 const CLEAR = 'CLEAR';
 
 const initState = {
-    prevNum: 0;
-    currNumArr: [];
-    result: 0;
-    history: '';
-    display: '';
-    currOp: '';
+    prevNum: 0,
+    currNumArr: [],
+    result: 0,
+    history: '',
+    display: '',
+    currOp: ''
 }
 export {ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, initState}
