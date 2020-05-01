@@ -5,6 +5,7 @@ const MULTIPLY = 'MULTIPLY';
 const DIVIDE = 'DIVIDE';
 const EQUALS = 'EQUALS';
 const CLEAR = 'CLEAR';
+const DIGIT = 'DIGIT';
 
 const initState = {
     prevNum: 0,

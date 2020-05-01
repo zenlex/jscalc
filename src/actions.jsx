@@ -1,5 +1,12 @@
 //Action creators for react/redux - JS Calc App
-import { ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR } from './constants'
+import { ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, DIGIT } from './constants'
+
+function clickDigit(num){
+    return{
+        type: DIGIT,
+        num: num
+    }
+}
 
 function addNum(num){
     return{
