@@ -15,4 +15,4 @@ const initState = {
     display: '',
     currOp: ''
 }
-export {ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, initState}
+export {DIGIT, ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, initState}
