@@ -9,10 +9,10 @@ const DIGIT = 'DIGIT';
 
 const initState = {
     prevNum: 0,
-    currNumArr: [],
+    currNumArr: ['8','0','0','8'],
     result: 0,
     history: '',
-    display: '',
+    display: 'DefaultDisplay',
     currOp: ''
 }
-export {ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, initState}
+export {DIGIT, ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, initState}

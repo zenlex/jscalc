@@ -50,4 +50,4 @@ function clearIt(){
 }
 
 
-export { addNum, subNum, multNum, divNum, equalIt, clearIt }
+export { addNum, subNum, multNum, divNum, equalIt, clearIt, clickDigit }
