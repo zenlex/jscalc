@@ -18,7 +18,6 @@ function calcReducer(state = initState, action){
                     valid = !newArr.includes('.')  
                 }
             } else if(action.num.match(/[1-9]/)){
-                console.log('NonZero found....newArr = ', newArr)
                 valid = ((newArr[0] === '0' && newArr[1] === '.') || newArr[0] !== '0');
             } 
             
