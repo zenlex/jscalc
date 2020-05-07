@@ -10,7 +10,6 @@ function DigitKey(props){
 const DigitContainer = props => {
 
     useEffect(() => {
-        console.log('Adding Event Listener for Keydown')
         window.addEventListener('keypress', props.keyPressHandle)
         return(() => window.removeEventListener('keypress', props.keyPressHandle))
     }, [props.keyPressHandle] )
@@ -41,7 +40,6 @@ const mapDispatchToProps = dispatch => {
             dispatch(clickDigit(event.target.value))
         },
         keyPressHandle: event => {
-            console.log('calling keyPressHandle with event.keyCode = ', event.keyCode)
             let keyVal = (String.fromCharCode(event.keyCode));
             if(digitArr.includes(keyVal)){
                 dispatch(clickDigit(keyVal))
