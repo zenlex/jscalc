@@ -8,10 +8,10 @@ function DigitKey(props){
 }
 
 const DigitContainer = props => {
-    const digitArr = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0']
+    const digitArr = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0', '.']
     let digGrid = digitArr.map((digObj, i, digitArr)=>{
         return(
-            <DigitKey value={digitArr[i]} onClick={props.clickHandle} key={i} />
+            <DigitKey value={digitArr[i]} clickHandle={props.clickHandle} key={i} />
         )
     })
     return(
@@ -24,7 +24,8 @@ const DigitContainer = props => {
 const mapDispatchToProps = dispatch => {
     return{
         clickHandle: event => {
-            dispatch(clickDigit(event.target.id))
+            dispatch(clickDigit(event.target.value))
+            
         }
     }
 }

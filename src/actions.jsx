@@ -2,7 +2,6 @@
 import { ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, DIGIT } from './constants'
 
 function clickDigit(num){
-    console.log('calling clickDigit action creator with num = ', num);
     return{
         type: DIGIT,
         num: num

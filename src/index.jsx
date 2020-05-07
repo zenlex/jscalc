@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { combineReducers, createStore } from 'redux'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import * as reducers from './reducers'
-const calcApp = combineReducers(reducers)
-const store = createStore(calcApp)
+import calcReducer from './reducers'
 
+const store = createStore(calcReducer)
+console.log(store.getState());
 ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>
