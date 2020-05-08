@@ -28,11 +28,11 @@ const KEYCODES = {
 
 const initState = {
     prevNum: 0,
-    currNumArr: ['0'],
+    currNumArr: [],
     result: 0,
     formula: '',
     display: 'DefaultDisplay',
-    lastOp: ''
+    currOp: ''
 }
 
 export {DIGIT, ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, KEYCODES, initState}

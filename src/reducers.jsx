@@ -35,7 +35,7 @@ function calcReducer(state = initState, action){
             console.log('ADD triggered in calcReducer')
             let currNum = Number(state.currNumArr.join(''))
             console.log('currNum = ', currNum)
-            return Object.assign({}, state, {prevNum: state.prevNum+currNum, currNumArr:['0']})
+            return Object.assign({}, state, {prevNum: state.prevNum+currNum, currNumArr:[]})
         
         case SUBTRACT:
             console.log('SUBTRACT triggered in calcReducer')
