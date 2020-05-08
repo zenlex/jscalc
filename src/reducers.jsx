@@ -1,5 +1,5 @@
 
-import { initState, DIGIT, CLEAR } from './constants'
+import { initState, DIGIT, CLEAR, ADD, SUBTRACT, MULTIPLY, DIVIDE } from './constants'
 
 function calcReducer(state = initState, action){
     switch(action.type){
@@ -30,6 +30,25 @@ function calcReducer(state = initState, action){
             
         case CLEAR:
             return Object.assign({}, state, {currNumArr:[]})
+
+        case ADD:
+            console.log('ADD triggered in calcReducer')
+            let currNum = Number(state.currNumArr.join(''))
+            console.log('currNum = ', currNum)
+            return Object.assign({}, state, {prevNum: state.prevNum+currNum, currNumArr:['0']})
+        
+        case SUBTRACT:
+            console.log('SUBTRACT triggered in calcReducer')
+            return state;
+        
+        case MULTIPLY:
+            console.log('MULTIPLY triggered in calcReducer')
+            return state;
+
+        case DIVIDE:
+            console.log('DIVIDE triggered in calcReducer')
+            return state;
+
         default:
             return state;
     }

@@ -30,3 +30,9 @@ code {
   border: 3px solid gray;
   font-size: 2em;
 }
+
+#ops-keys{
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0px;
+}

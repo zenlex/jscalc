@@ -10,8 +10,8 @@ function DigitKey(props){
 const DigitContainer = props => {
 
     useEffect(() => {
-        window.addEventListener('keypress', props.keyPressHandle)
-        return(() => window.removeEventListener('keypress', props.keyPressHandle))
+        document.addEventListener('keypress', props.keyPressHandle)
+        return(() => document.removeEventListener('keypress', props.keyPressHandle))
     }, [props.keyPressHandle] )
     
     let digGrid = props.digitArr.map((digObj, i, digitArr)=>{
