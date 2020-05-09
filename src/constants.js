@@ -28,9 +28,9 @@ const KEYCODES = {
 
 const initState = {
     prevNum: 0,
-    currNumArr: ['8','0','0','8'],
+    currNumArr: [],
     result: 0,
-    history: '',
+    formula: '',
     display: 'DefaultDisplay',
     currOp: ''
 }

@@ -8,31 +8,27 @@ function clickDigit(num){
     }
 }
 
-function addNum(num){
+function addNum(){
     return{
         type: ADD,
-        num: num
     }
 }
 
-function subNum(num){
+function subNum(){
     return{
         type: SUBTRACT,
-        num: num
     }
 }
 
-function multNum(num){
+function multNum(){
     return{
         type: MULTIPLY,
-        num: num
     }
 }
 
-function divNum(num){
+function divideNum(){
     return{
         type: DIVIDE,
-        num: num
     }
 }
 
@@ -50,4 +46,4 @@ function clearIt(){
 }
 
 
-export { addNum, subNum, multNum, divNum, equalIt, clearIt, clickDigit }
+export { addNum, subNum, multNum, divideNum, equalIt, clearIt, clickDigit }
