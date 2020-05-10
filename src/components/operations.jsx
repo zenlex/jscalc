@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
-import {addNum, subNum, multNum, divideNum} from '../actions'
+import {clickOp} from '../actions'
+import {OPERATORS} from '../constants'
 
 function AddKey(props){
-    return <button className='key' id='add' onClick={props.clickHandle}>+</button>
+    return <button className='key' id='add' onClick={() => props.clickOp(props.value)}>+</button>
 }
 
 function SubKey(props){
-    return <button className='key' id='sub' onClick={props.clickHandle}>-</button>
+    return <button className='key' id='sub' onClick={() => props.clickOp(props.value)}>-</button>
 }
 
 function MultKey(props){
-    return <button className='key' id='mult' onClick={props.clickHandle}>*</button>
+    return <button className='key' id='mult' onClick={() => props.clickOp(props.value)}>*</button>
 }
 
 function DivideKey(props){
-    return <button className='key' id='divide' onClick={props.clickHandle}>/</button>
+    return <button className='key' id='divide' onClick={() => props.clickOp(props.value)}>/</button>
 }
 
 function OpsContainer(props){
@@ -27,33 +28,22 @@ function OpsContainer(props){
     
     return(
         <div id='ops-keys'>
-        <AddKey clickHandle={props.addClick} />
-        <SubKey clickHandle={props.subClick} />
-        <MultKey clickHandle={props.multClick} />
-        <DivideKey clickHandle={props.divideClick} />        
+        <AddKey clickOp={props.clickOp} value='+'/>
+        <SubKey clickOp={props.clickOp} value='-'/>
+        <MultKey clickOp={props.clickOp} value='*' />
+        <DivideKey clickOp={props.clickOp} value='/'/>        
         </div>
     )
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        addClick: () => dispatch(addNum()),
-        subClick: () => dispatch(subNum()),
-        multClick: () => dispatch(multNum()),
-        divideClick: () => dispatch(divideNum()),
+        clickOp: (value) => dispatch(clickOp(value)),
         keyPressHandle: event => {
-            switch(String.fromCharCode(event.keyCode)){
-                case '+': 
-                    return dispatch(addNum())
-                case '-': 
-                    return dispatch(subNum())
-                case '*': 
-                    return dispatch(multNum())
-                case '/': 
-                    return dispatch(divideNum())
-                default:
-                    console.log('no valid key found - keycode = ', event.keyCode)
-            }
+            let charPress = String.fromCharCode(event.keyCode)
+               if (charPress.match(OPERATORS)){
+                   dispatch(clickOp(charPress))
+               } else console.log('no valid key found - keycode = ', event.keyCode)
         }
     }
 }

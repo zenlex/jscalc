@@ -1,5 +1,5 @@
 //Action creators for react/redux - JS Calc App
-import { ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, DIGIT } from './constants'
+import { OPERAND, EQUALS, CLEAR, DIGIT } from './constants'
 
 function clickDigit(num){
     return{
@@ -8,27 +8,10 @@ function clickDigit(num){
     }
 }
 
-function addNum(){
+function clickOp(operand){
     return{
-        type: ADD,
-    }
-}
-
-function subNum(){
-    return{
-        type: SUBTRACT,
-    }
-}
-
-function multNum(){
-    return{
-        type: MULTIPLY,
-    }
-}
-
-function divideNum(){
-    return{
-        type: DIVIDE,
+        type: OPERAND,
+        op: operand
     }
 }
 
@@ -46,4 +29,4 @@ function clearIt(){
 }
 
 
-export { addNum, subNum, multNum, divideNum, equalIt, clearIt, clickDigit }
+export { clickOp, equalIt, clearIt, clickDigit }

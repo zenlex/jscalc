@@ -1,12 +1,10 @@
 //Constants for declaration throughout JSCalc App
-const ADD = 'ADD';
-const SUBTRACT = 'SUBTRACT';
-const MULTIPLY = 'MULTIPLY';
-const DIVIDE = 'DIVIDE';
+const OPERAND = 'OPERAND';
 const EQUALS = 'EQUALS';
 const CLEAR = 'CLEAR';
 const DIGIT = 'DIGIT';
 
+const OPERATORS = /[+\-*/]/
 const KEYCODES = {
     '0': 48,
     '1': 49,
@@ -32,7 +30,6 @@ const initState = {
     result: 0,
     formula: '',
     display: 'DefaultDisplay',
-    currOp: ''
 }
 
-export {DIGIT, ADD, SUBTRACT, MULTIPLY, DIVIDE, EQUALS, CLEAR, KEYCODES, initState}
+export {DIGIT, OPERAND, OPERATORS, EQUALS, CLEAR, KEYCODES, initState}
