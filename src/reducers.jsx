@@ -4,26 +4,26 @@ import { initState, DIGIT, CLEAR, OPERAND } from './constants'
 function calcReducer(state = initState, action){
     switch(action.type){
         case DIGIT: 
-            let newArr = state.currNumArr.slice();
+            let newNum = state.currNum;
             let valid = false;
             if(action.num === '0'){
-                valid = newArr[0] !== '0' 
-                || newArr === [] 
-                || newArr.length > 2 ? true : false;
+                valid = newNum[0] !== '0' 
+                || newNum === '' 
+                || newNum.length > 2 ? true : false;
             } else if(action.num === '.'){
-                if(newArr[0] === undefined){
-                    newArr = ['0']
+                if(newNum === ''){
+                    newNum = '0'
                     valid = true;
                 }else{
-                    valid = !newArr.includes('.')  
+                    valid = !newNum.includes('.')  
                 }
             } else if(action.num.match(/[1-9]/)){
-                valid = ((newArr[0] === '0' && newArr[1] === '.') || newArr[0] !== '0');
+                valid = (newNum === '0.' || newNum[0] !== '0');
             } 
             
             if(valid){
-                newArr.push(action.num)
-                return Object.assign({}, state, {currNumArr: newArr})
+                newNum += action.num
+                return Object.assign({}, state, {currNum: newNum, display: newNum})
             } else{
                 return state;
             } 
@@ -31,12 +31,12 @@ function calcReducer(state = initState, action){
         case OPERAND:
             console.log('OPERAND triggered in calcReducer')
             console.log('Operand passed: ', action.op)
-            let currNum = state.currNumArr.join('')
-            let newFormula = state.formula === '' ? currNum + action.op : state.formula + currNum + action.op;
-            return Object.assign({}, state, { formula: newFormula, currNumArr:[]})
+            let currNum = state.currNum
+            let newFormula = state.formula + currNum + action.op;
+            return Object.assign({}, state, { formula: newFormula, currNum:''})
         
         case CLEAR:
-            return Object.assign({}, state, {currNumArr:[]})
+            return Object.assign({}, state, {currNum:'', formula:''})
 
         default:
             return state;

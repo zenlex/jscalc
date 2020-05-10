@@ -8,19 +8,19 @@ function Display(props){
             <div id='history'>
                 {props.formula}
             </div>
-            {props.currNum}
+            {props.display}
         </div>
     )
 }
 
 function DisplayContainer(props){
-    return <Display currNum={props.currNum} formula={props.formula}/>
+    return <Display display={props.display} formula={props.formula}/>
 }
 
 function mapStateToProps(state){
     return {
-        currNum : state.currNumArr,
-        formula : state.formula
+        formula : state.formula,
+        display: state.display
     }
 }
 
