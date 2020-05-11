@@ -1,5 +1,5 @@
 
-import { initState, DIGIT, CLEAR, OPERAND, OP_END, } from './constants'
+import { initState, DIGIT, CLEAR, OPERAND, OP_END, EQUALS } from './constants'
 
 function calcReducer(state = initState, action){
     switch(action.type){
@@ -58,6 +58,16 @@ function calcReducer(state = initState, action){
         case CLEAR:
             return Object.assign({}, state, {currNum:'', formula:'', display:''})
 
+        case EQUALS:
+            let evalFormula = state.formula + state.currNum;
+            if (evalFormula.match(OP_END)){
+                evalFormula = evalFormula.slice(0, evalFormula.length-2)
+            }            
+            console.log('Evaluating Formula: ', evalFormula);
+            let result = Math.round(1000000000000 * eval(evalFormula)) / 1000000000000;
+            console.log('Result = ', result)
+            return Object.assign({}, state, {display: result.toString(), currNum: result.toString(), formula: ''})
+        
         default:
             return state;
     }
