@@ -29,7 +29,7 @@ const KEYCODES = {
 const initState = {
     currNum: '',
     formula: '',
-    display: 'DefaultDisplay',
+    display: '',
 }
 
 export {DIGIT, OPERAND, OPERATORS, OP_END, OP_START, EQUALS, CLEAR, KEYCODES, initState}
