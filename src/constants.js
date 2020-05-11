@@ -5,6 +5,8 @@ const CLEAR = 'CLEAR';
 const DIGIT = 'DIGIT';
 
 const OPERATORS = /[+\-*/]/
+const OP_END = /[+\-*/]$/
+const OP_START = /^[+\-*]/
 const KEYCODES = {
     '0': 48,
     '1': 49,
@@ -27,7 +29,7 @@ const KEYCODES = {
 const initState = {
     currNum: '',
     formula: '',
-    display: 'DefaultDisplay',
+    display: '',
 }
 
-export {DIGIT, OPERAND, OPERATORS, EQUALS, CLEAR, KEYCODES, initState}
+export {DIGIT, OPERAND, OPERATORS, OP_END, OP_START, EQUALS, CLEAR, KEYCODES, initState}

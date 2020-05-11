@@ -19,6 +19,10 @@ function DivideKey(props){
     return <button className='key' id='divide' onClick={() => props.clickOp(props.value)}>/</button>
 }
 
+function InvSign(props){
+    return <button className='key' id='invert' onClick={() => props.clickOp(props.value)}>+/-</button>
+}
+
 function OpsContainer(props){
 
     useEffect(() => {
@@ -31,7 +35,8 @@ function OpsContainer(props){
         <AddKey clickOp={props.clickOp} value='+'/>
         <SubKey clickOp={props.clickOp} value='-'/>
         <MultKey clickOp={props.clickOp} value='*' />
-        <DivideKey clickOp={props.clickOp} value='/'/>        
+        <DivideKey clickOp={props.clickOp} value='/'/> 
+        <InvSign clickOp={props.clickOp} value='invert'/>             
         </div>
     )
 }
@@ -43,7 +48,7 @@ function mapDispatchToProps(dispatch){
             let charPress = String.fromCharCode(event.keyCode)
                if (charPress.match(OPERATORS)){
                    dispatch(clickOp(charPress))
-               } else console.log('no valid key found - keycode = ', event.keyCode)
+               } 
         }
     }
 }
