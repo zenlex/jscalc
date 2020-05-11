@@ -1,5 +1,5 @@
 
-import { initState, DIGIT, CLEAR, OPERAND } from './constants'
+import { initState, DIGIT, CLEAR, OPERAND, OP_END, OP_START } from './constants'
 
 function calcReducer(state = initState, action){
     switch(action.type){
@@ -32,11 +32,16 @@ function calcReducer(state = initState, action){
             console.log('OPERAND triggered in calcReducer')
             console.log('Operand passed: ', action.op)
             let currNum = state.currNum
-            let newFormula = state.formula + currNum + action.op;
-            return Object.assign({}, state, { formula: newFormula, currNum:''})
+            if (currNum === '-'){
+                return Object.assign({}, state, { currNum: currNum, display: currNum})
+            } else {
+                let newFormula = state.formula + currNum + action.op;
+                return Object.assign({}, state, { formula: newFormula, currNum:'', display:''})
+            }
+
         
         case CLEAR:
-            return Object.assign({}, state, {currNum:'', formula:''})
+            return Object.assign({}, state, {currNum:'', formula:'', display:''})
 
         default:
             return state;
