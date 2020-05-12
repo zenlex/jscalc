@@ -27,8 +27,9 @@ function calcReducer(state = initState, action){
             } 
             //if valid entry push newNum and update display
             if(valid){
-                newNum += action.num
-                return Object.assign({}, state, {currNum: newNum, display: newNum})
+                newNum = state.evaluated ? action.num : newNum + action.num
+                let newFormula = state.evaluated ? '' : state.formula
+                return Object.assign({}, state, {currNum: newNum, display: newNum, formula: newFormula, evaluated: false})
             } else{
                 return state;
             } 
@@ -38,22 +39,22 @@ function calcReducer(state = initState, action){
             console.log('Operand passed: ', action.op)
             let currNum = state.currNum;
             if(action.op === '-' && currNum === ''){
-                return Object.assign({}, state, {currNum: '-', display: '-'})
+                return Object.assign({}, state, {currNum: '-', display: '-', evaluated: false})
             }
  
             let formula = (state.formula === '' && currNum === '') ? '0': state.formula;
 
             if (currNum !== ''){
                 formula = formula + currNum + ' ' + action.op + ' ';
-                return Object.assign({}, state, { formula: formula, currNum:'', display:''})
+                return Object.assign({}, state, { formula: formula, currNum:'', display:'', evaluated: false})
             } else if (currNum === ''){
-                let newFormula = formula.replace(OP_END, action.op)
-                return Object.assign({}, state, { formula: newFormula })
+                let newFormula = formula.replace(OP_END, action.op + ' ')
+                return Object.assign({}, state, { formula: newFormula, evaluated: false })
             } 
             break;
 
         case CLEAR:
-            return Object.assign({}, state, {currNum:'', formula:'', display:''})
+            return Object.assign({}, state, {currNum:'', formula:'', display:'', evaluated: false})
 
         case EQUALS:
             let evalFormula = state.formula + state.currNum;
