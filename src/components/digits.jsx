@@ -4,7 +4,7 @@ import {clickDigit} from '../actions'
 
 function DigitKey(props){
 
-    return <button className='key digit' value={props.value} onClick={props.clickHandle}>{props.value}</button>
+    return <button className='key digit' tabIndex='-1' value={props.value} onClick={props.clickHandle}>{props.value}</button>
 }
 
 const DigitContainer = props => {
@@ -41,6 +41,9 @@ const mapDispatchToProps = dispatch => {
         },
         keyPressHandle: event => {
             let keyVal = (String.fromCharCode(event.keyCode));
+            if(event.keyCode===13){
+                event.preventDefault()
+            }
             if(digitArr.includes(keyVal)){
                 dispatch(clickDigit(keyVal))
             }

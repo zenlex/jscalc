@@ -37,22 +37,19 @@ function calcReducer(state = initState, action){
             console.log('OPERAND triggered in calcReducer')
             console.log('Operand passed: ', action.op)
             let currNum = state.currNum;
-            if(state.formula === '' && currNum === ''){
-                return Object.assign({}, state, {formula: '0' + action.op})
+            if(action.op === '-' && currNum === ''){
+                return Object.assign({}, state, {currNum: '-', display: '-'})
             }
-            let formula = state.formula === '' ? '0': state.formula;
-            if (currNum !== '' && action.op !== 'invert'){
-                formula = state.formula + currNum + action.op;
+ 
+            let formula = (state.formula === '' && currNum === '') ? '0': state.formula;
+
+            if (currNum !== ''){
+                formula = formula + currNum + ' ' + action.op + ' ';
                 return Object.assign({}, state, { formula: formula, currNum:'', display:''})
-            }
-            if (currNum === '' && formula !== ''){
+            } else if (currNum === ''){
                 let newFormula = formula.replace(OP_END, action.op)
                 return Object.assign({}, state, { formula: newFormula })
             } 
-            if (action.op === 'invert'){
-                currNum = currNum.charAt(0) === '-' ? currNum.slice(1) : '-' + currNum
-                return Object.assign({}, state, {currNum: currNum, display: currNum})
-            }
             break;
 
         case CLEAR:
@@ -65,8 +62,9 @@ function calcReducer(state = initState, action){
             }            
             console.log('Evaluating Formula: ', evalFormula);
             let result = Math.round(1000000000000 * eval(evalFormula)) / 1000000000000;
+            let resultDisplay = evalFormula + '=' + result.toString()
             console.log('Result = ', result)
-            return Object.assign({}, state, {display: result.toString(), currNum: result.toString(), formula: ''})
+            return Object.assign({}, state, {display: result.toString(), currNum: result.toString(), formula: resultDisplay, evaluated: true})
         
         default:
             return state;
