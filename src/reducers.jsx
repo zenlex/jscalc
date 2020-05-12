@@ -58,8 +58,9 @@ function calcReducer(state = initState, action){
 
         case EQUALS:
             let evalFormula = state.formula + state.currNum;
-            if (evalFormula.match(OP_END)){
-                evalFormula = evalFormula.slice(0, evalFormula.length-2)
+            //trim any trailing operators before eval (could move this to preparser in custom eval function later)
+            while (evalFormula.match(OP_END)){
+                evalFormula = evalFormula.slice(0, evalFormula.length-1)
             }            
             console.log('Evaluating Formula: ', evalFormula);
             let result = Math.round(1000000000000 * eval(evalFormula)) / 1000000000000;
