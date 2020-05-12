@@ -30,6 +30,7 @@ const initState = {
     currNum: '',
     formula: '',
     display: '',
+    evaluated: false
 }
 
 export {DIGIT, OPERAND, OPERATORS, OP_END, OP_START, EQUALS, CLEAR, KEYCODES, initState}

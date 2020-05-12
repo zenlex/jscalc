@@ -19,10 +19,6 @@ function DivideKey(props){
     return <button type='button' tabIndex='-1' className='key' id='divide' onClick={() => props.clickOp(props.value)}>/</button>
 }
 
-function InvSign(props){
-    return <button type='button' tabIndex='-1' className='key' id='invert' onClick={() => props.clickOp(props.value)}>+/-</button>
-}
-
 function OpsContainer(props){
 
     useEffect(() => {
@@ -36,7 +32,6 @@ function OpsContainer(props){
         <SubKey clickOp={props.clickOp} value='-'/>
         <MultKey clickOp={props.clickOp} value='*' />
         <DivideKey clickOp={props.clickOp} value='/'/> 
-        <InvSign clickOp={props.clickOp} value='invert'/>             
         </div>
     )
 }
