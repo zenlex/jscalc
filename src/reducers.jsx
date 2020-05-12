@@ -12,10 +12,11 @@ function calcReducer(state = initState, action){
             }
             //evaluate decimal cases
             if(action.num === '.'){
-                valid = !state.currNum.includes('.')
-                if(valid){
-                    console.log('no decimal found in currNum valid = ', valid)
-                } else console.log('decimal already found in currNum, valid = ', valid)
+               if(newNum === ''){
+                   return Object.assign({}, state, {currNum:'0.', display:'0.'})
+               }else {
+                    valid = !state.currNum.includes('.')
+               }
             }
             //evaluate digits
             if(action.num.match(/[1-9]/)){
