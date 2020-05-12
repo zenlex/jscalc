@@ -1,5 +1,5 @@
 
-import { initState, DIGIT, CLEAR, OPERAND, OP_END, EQUALS } from './constants'
+import { initState, DIGIT, CLEAR, OPERAND, OP_END, EQUALS, BS } from './constants'
 
 function calcReducer(state = initState, action){
     switch(action.type){
@@ -49,17 +49,44 @@ function calcReducer(state = initState, action){
                 let newFormula = formula.replace(OP_END, action.op + ' ')
                 return Object.assign({}, state, { formula: newFormula, currNum:'', evaluated: false })
             } 
+        case BS:
+            if(state.evaluated === true){
+                return initState;
+            }
+            if(state.currNum.length > 1){
+                let newNum = state.currNum.slice(0, -1) 
+                return Object.assign({}, state, {currNum: newNum, display: newNum})
+            }
+            if(state.currNum.length === 1){
+                return Object.assign({}, state, {display:'', currNum:''})
+            }
+            if(state.formula.length > 0 && state.currNum.length === 0){
+                let newFormula = state.formula
+                if (newFormula.match(OP_END) || newFormula.endsWith(' ')){
+                   do{
+                        newFormula = newFormula.slice(0, -1)
+                    } while(newFormula.match(OP_END) || newFormula.endsWith(' '))
+                }else newFormula = state.formula.slice(0,-1)
+                return Object.assign({}, state, {formula: newFormula})
+            }else return state;
 
         case CLEAR:
             return Object.assign({}, state, {currNum:'', formula:'', display:'0', evaluated: false})
 
         case EQUALS:
+            if(state.evaluated === true){
+                return state;
+            }
             let evalFormula = state.formula + state.currNum;
             //trim any trailing operators before eval (could move this to preparser in custom eval function later)
             while (evalFormula.match(OP_END)){
                 evalFormula = evalFormula.slice(0, -1)
             }            
-            let result = Math.round(1000000000000 * eval(evalFormula)) / 1000000000000;
+            let result = 0;
+            if(evalFormula.length > 0){
+                result = Math.round(1000000000000 * eval(evalFormula)) / 1000000000000;
+            }
+            
             let resultDisplay = evalFormula + '=' + result.toString()
             return Object.assign({}, state, {display: result, currNum: result.toString(), formula: resultDisplay, evaluated: true})
         

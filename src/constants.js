@@ -3,6 +3,7 @@ const OPERAND = 'OPERAND';
 const EQUALS = 'EQUALS';
 const CLEAR = 'CLEAR';
 const DIGIT = 'DIGIT';
+const BS = 'BACKSPACE';
 
 const OPERATORS = /[+\-*/]/
 const OP_END = /[+\-*/]\s?$/
@@ -23,7 +24,8 @@ const KEYCODES = {
     '-': 45,
     '*': 42,
     '/': 47,
-    'enter': 13
+    'enter': 13,
+    'bs': 8
 }
 
 const initState = {
@@ -33,4 +35,4 @@ const initState = {
     evaluated: false
 }
 
-export {DIGIT, OPERAND, OPERATORS, OP_END, OP_START, EQUALS, CLEAR, KEYCODES, initState}
+export {DIGIT, OPERAND, OPERATORS, OP_END, OP_START, EQUALS, CLEAR, KEYCODES, BS, initState}
