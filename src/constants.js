@@ -5,7 +5,7 @@ const CLEAR = 'CLEAR';
 const DIGIT = 'DIGIT';
 
 const OPERATORS = /[+\-*/]/
-const OP_END = /[+\-*/]$/
+const OP_END = /[+\-*/]\s?$/
 const OP_START = /^[+\-*]/
 const KEYCODES = {
     '0': 48,
