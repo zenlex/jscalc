@@ -2,14 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function Display(props){
-    
     return(
-        <div id='display'>
+        <div id='display-wrapper'>
             <div id='history'>
                 {props.formula}
             </div>
-            {props.display}
+            <div id='display'>
+                {props.display}
+            </div>
         </div>
+        
     )
 }
 

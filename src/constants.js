@@ -27,9 +27,9 @@ const KEYCODES = {
 }
 
 const initState = {
-    currNum: '',
+    currNum: '0',
     formula: '',
-    display: '',
+    display: '0',
     evaluated: false
 }
 

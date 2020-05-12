@@ -8,11 +8,11 @@ function AddKey(props){
 }
 
 function SubKey(props){
-    return <button type='button' tabIndex='-1' className='key' id='sub' onClick={() => props.clickOp(props.value)}>-</button>
+    return <button type='button' tabIndex='-1' className='key' id='subtract' onClick={() => props.clickOp(props.value)}>-</button>
 }
 
 function MultKey(props){
-    return <button type='button' tabIndex='-1' className='key' id='mult' onClick={() => props.clickOp(props.value)}>*</button>
+    return <button type='button' tabIndex='-1' className='key' id='multiply' onClick={() => props.clickOp(props.value)}>*</button>
 }
 
 function DivideKey(props){

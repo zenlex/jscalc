@@ -4,7 +4,7 @@ import {clickDigit} from '../actions'
 
 function DigitKey(props){
 
-    return <button className='key digit' tabIndex='-1' value={props.value} onClick={props.clickHandle}>{props.value}</button>
+    return <button className='key digit' id={props.id} tabIndex='-1' value={props.value} onClick={props.clickHandle}>{props.value}</button>
 }
 
 const DigitContainer = props => {
@@ -16,7 +16,7 @@ const DigitContainer = props => {
     
     let digGrid = props.digitArr.map((digObj, i, digitArr)=>{
         return(
-            <DigitKey value={digitArr[i]} clickHandle={props.clickHandle} key={i} />
+            <DigitKey value={digitArr[i]} id={props.idArr[i]} clickHandle={props.clickHandle} key={i} />
         )
     })
     return(
@@ -27,10 +27,12 @@ const DigitContainer = props => {
 }
 
 const digitArr = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0', '.'];
+const idArr = ['nine', 'eight', 'seven', 'six', 'five', 'four', 'three', 'two', 'one', 'zero', 'decimal']
 
 const mapStateToProps = state => {
     return{
-        digitArr: digitArr
+        digitArr: digitArr,
+        idArr: idArr
     }
 }
 

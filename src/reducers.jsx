@@ -9,21 +9,19 @@ function calcReducer(state = initState, action){
             //evaluate 0 cases
             if(action.num === '0'){
                 valid = newNum[0] !== '0' 
-                || newNum === '' 
-                || newNum.length > 2 ? true : false;
             }
             //evaluate decimal cases
             if(action.num === '.'){
-                if(newNum === '' || '-'){
-                    newNum += '0'
-                    valid = true;
-                } else{
-                valid = !newNum.includes('.')  
-                }
+                valid = !state.currNum.includes('.')
+                if(valid){
+                    console.log('no decimal found in currNum valid = ', valid)
+                } else console.log('decimal already found in currNum, valid = ', valid)
             }
             //evaluate digits
             if(action.num.match(/[1-9]/)){
-                valid = (newNum === '0.' || newNum[0] !== '0');
+                //strip a leading zero on first digit entry
+                newNum = newNum === '0' ? '' : newNum
+                valid = true;
             } 
             //if valid entry push newNum and update display
             if(valid){
@@ -35,38 +33,35 @@ function calcReducer(state = initState, action){
             } 
             
         case OPERAND:
-            console.log('OPERAND triggered in calcReducer')
-            console.log('Operand passed: ', action.op)
             let currNum = state.currNum;
+            let formula = (state.formula === '' && currNum === '') ? '0': state.formula;
+            if(state.evaluated === true){
+                formula = ''
+            }
             if(action.op === '-' && currNum === ''){
                 return Object.assign({}, state, {currNum: '-', display: '-', evaluated: false})
             }
  
-            let formula = (state.formula === '' && currNum === '') ? '0': state.formula;
-
-            if (currNum !== ''){
+            if (currNum !== '' && currNum !== '-'){
                 formula = formula + currNum + ' ' + action.op + ' ';
                 return Object.assign({}, state, { formula: formula, currNum:'', display:'', evaluated: false})
-            } else if (currNum === ''){
+            } else {
                 let newFormula = formula.replace(OP_END, action.op + ' ')
-                return Object.assign({}, state, { formula: newFormula, evaluated: false })
+                return Object.assign({}, state, { formula: newFormula, currNum:'', evaluated: false })
             } 
-            break;
 
         case CLEAR:
-            return Object.assign({}, state, {currNum:'', formula:'', display:'', evaluated: false})
+            return Object.assign({}, state, {currNum:'', formula:'', display:'0', evaluated: false})
 
         case EQUALS:
             let evalFormula = state.formula + state.currNum;
             //trim any trailing operators before eval (could move this to preparser in custom eval function later)
             while (evalFormula.match(OP_END)){
-                evalFormula = evalFormula.slice(0, evalFormula.length-1)
+                evalFormula = evalFormula.slice(0, -1)
             }            
-            console.log('Evaluating Formula: ', evalFormula);
             let result = Math.round(1000000000000 * eval(evalFormula)) / 1000000000000;
             let resultDisplay = evalFormula + '=' + result.toString()
-            console.log('Result = ', result)
-            return Object.assign({}, state, {display: result.toString(), currNum: result.toString(), formula: resultDisplay, evaluated: true})
+            return Object.assign({}, state, {display: result, currNum: result.toString(), formula: resultDisplay, evaluated: true})
         
         default:
             return state;
