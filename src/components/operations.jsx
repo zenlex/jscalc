@@ -4,23 +4,23 @@ import {clickOp} from '../actions'
 import {OPERATORS} from '../constants'
 
 function AddKey(props){
-    return <button className='key' id='add' onClick={() => props.clickOp(props.value)}>+</button>
+    return <button type='button' tabIndex='-1' className='key' id='add' onClick={() => props.clickOp(props.value)}>+</button>
 }
 
 function SubKey(props){
-    return <button className='key' id='sub' onClick={() => props.clickOp(props.value)}>-</button>
+    return <button type='button' tabIndex='-1' className='key' id='sub' onClick={() => props.clickOp(props.value)}>-</button>
 }
 
 function MultKey(props){
-    return <button className='key' id='mult' onClick={() => props.clickOp(props.value)}>*</button>
+    return <button type='button' tabIndex='-1' className='key' id='mult' onClick={() => props.clickOp(props.value)}>*</button>
 }
 
 function DivideKey(props){
-    return <button className='key' id='divide' onClick={() => props.clickOp(props.value)}>/</button>
+    return <button type='button' tabIndex='-1' className='key' id='divide' onClick={() => props.clickOp(props.value)}>/</button>
 }
 
 function InvSign(props){
-    return <button className='key' id='invert' onClick={() => props.clickOp(props.value)}>+/-</button>
+    return <button type='button' tabIndex='-1' className='key' id='invert' onClick={() => props.clickOp(props.value)}>+/-</button>
 }
 
 function OpsContainer(props){
@@ -46,9 +46,13 @@ function mapDispatchToProps(dispatch){
         clickOp: (value) => dispatch(clickOp(value)),
         keyPressHandle: event => {
             let charPress = String.fromCharCode(event.keyCode)
-               if (charPress.match(OPERATORS)){
-                   dispatch(clickOp(charPress))
-               } 
+                if (event.keyCode===13){
+                    event.preventDefault()
+                }   
+            
+                if (charPress.match(OPERATORS)){
+                    dispatch(clickOp(charPress))
+                } 
         }
     }
 }

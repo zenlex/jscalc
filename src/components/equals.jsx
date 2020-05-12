@@ -20,6 +20,7 @@ function mapDispatchToProps(dispatch){
         onClick: () => dispatch(equalIt()),
         keyPressHandle: event => {
             if(event.keyCode === 13){
+                event.preventDefault()
                 dispatch(equalIt())
             }
         }
