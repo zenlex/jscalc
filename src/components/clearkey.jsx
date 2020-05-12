@@ -4,7 +4,7 @@ import {clearIt} from '../actions'
 
 
 function ClearKey(props){
-    return <button className='key clear' onClick={props.clickHandle}>C</button>
+    return <button className='key clear' id='clear' onClick={props.clickHandle}>C</button>
 }
 
 const ClearContainer = props => {

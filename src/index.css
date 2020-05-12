@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+#test-suite{
+  display:block;
+  height:225px;
+  width: 100%;
+  background-color: lightgray;
+}
+
 .key {
   height:100px;
   width: 100px;
