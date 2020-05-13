@@ -5,6 +5,9 @@ function calcReducer(state = initState, action){
     switch(action.type){
         case DIGIT: 
             let newNum = state.currNum;
+            if(newNum.length > 21){
+               return state;
+            }
             let valid = false;
             //evaluate 0 cases
             if(action.num === '0'){
