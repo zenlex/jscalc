@@ -9,11 +9,14 @@ import EqualsContainer from './components/equals'
 function App() {
   return (
     <div className="App">
-      <DisplayContainer />
-      <DigitContainer />
-      <OpsContainer />
-      <ClearContainer />
-      <EqualsContainer />
+        <DisplayContainer />
+        <div className="keypad">
+          <DigitContainer/>
+          <EqualsContainer />
+          <OpsContainer />
+          <ClearContainer />
+          
+        </div>
     </div>
   );
 }
