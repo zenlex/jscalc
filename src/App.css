@@ -68,14 +68,15 @@
   display:flex;
   flex-direction: column;
   align-items:center;
-  width:100%;
+  width:305px;
+  height:175px;
   padding:5px;
 }
 
 #display{
   display:flex;
   align-items:center;
-  justify-content: center;
+  justify-content: flex-end;
   width: 100%;
   height: 2em;
   margin: 5px 0px;
@@ -89,7 +90,8 @@
 
 #history{
   width: 100%;
-  height:auto;
+  height:150px;
+  overflow-y:scroll;
   flex: 1 0;
   margin: 5px 0px;
   padding: 5px;
@@ -98,4 +100,103 @@
   border: 2px solid darkgray;
   box-shadow:inset 0px 0px 3px black;
   word-wrap:break-word;
+}
+
+@media only screen and (max-height: 500px){
+  .App{
+    align-items: center;
+    flex-direction:row;
+    justify-content:space-evenly;
+  }
+
+  .key{
+    height:50px;
+  }
+
+  .keypad{
+    display:grid;
+    grid-template-columns: 225px 75px;
+    grid-template-rows: 220px 55px;
+    grid-template-areas: "digit op"
+                         "clear clear" 
+  }
+
+  #dig-grid{
+    display: grid;
+    grid-area: digit;
+    grid-template-columns:repeat(3, 75px);
+    grid-template-rows:repeat(3, 55px);
+  }
+  
+  #ops-keys{
+    grid-area:op;
+    display:grid;
+    grid-template-rows: repeat(4, 55px);
+    grid-template-columns: 75px;
+  }
+
+  #display{
+   margin:0px;
+  }
+
+  #display-wrapper{
+    width: 100%;
+    height:275px;
+    justify-content: center;
+    flex-direction:column-reverse;
+  }
+
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px){
+  .App{
+    align-items: center;
+    justify-content:center;
+  }
+
+  .key{
+    height:100px;
+    width:100px;
+  }
+
+  .keypad{
+    display:grid;
+    grid-template-columns: 315px 105px;
+    grid-template-rows: 420px 105px;
+    grid-template-areas: "digit op"
+                         "clear clear" 
+  }
+
+  #dig-grid{
+    display: grid;
+    grid-area: digit;
+    grid-template-columns:repeat(3, 105px);
+    grid-template-rows:repeat(3, 105px);
+  }
+  
+  #ops-keys{
+    grid-area:op;
+    display:grid;
+    grid-template-rows: repeat(4, 105px);
+    grid-template-columns: 105px;
+  }
+
+  #display{
+    margin:0px;
+    margin-bottom:5px;
+    height:2em;
+    font-size:2em;
+  }
+
+  #display-wrapper{
+    width: 440px;
+    height:200px;
+    justify-content: center;
+  }
+
+  #clear-bs{
+    display:flex;
+    width:420px;
+    justify-content: space-evenly;
+  }
 }
