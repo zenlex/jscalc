@@ -4,16 +4,16 @@ import DigitContainer from './components/digits'
 import DisplayContainer from './components/display'
 import ClearContainer from './components/clearkey'
 import OpsContainer from './components/operations'
-import EqualsContainer from './components/equals'
 
 function App() {
   return (
     <div className="App">
-      <DisplayContainer />
-      <DigitContainer />
-      <OpsContainer />
-      <ClearContainer />
-      <EqualsContainer />
+        <DisplayContainer />
+        <div className="keypad">
+          <DigitContainer/>
+          <OpsContainer />
+          <ClearContainer />
+        </div>
     </div>
   );
 }
