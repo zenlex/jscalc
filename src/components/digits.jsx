@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
-import {clickDigit} from '../actions'
+import {clickDigit, equalIt} from '../actions'
+
+function EqualsKey(props){
+    return <button id='equals' className='key' onClick={props.onClick}>=</button>
+}
 
 function DigitKey(props){
-
     return <button className='key digit' id={props.id} tabIndex='-1' value={props.value} onClick={props.clickHandle}>{props.value}</button>
 }
 
 const DigitContainer = props => {
-
     useEffect(() => {
         document.addEventListener('keypress', props.keyPressHandle)
         return(() => document.removeEventListener('keypress', props.keyPressHandle))
@@ -16,12 +18,13 @@ const DigitContainer = props => {
     
     let digGrid = props.digitArr.map((digObj, i, digitArr)=>{
         return(
-            <DigitKey value={digitArr[i]} id={props.idArr[i]} clickHandle={props.clickHandle} key={i} />
+            <DigitKey value={digitArr[i]} id={props.idArr[i]} clickHandle={props.digitClick} key={i} />
         )
     })
     return(
         <div id='dig-grid'>
             {digGrid}
+            <EqualsKey value='equals' onClick={props.equalsClick} />
         </div>
     )
 }
@@ -38,13 +41,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-        clickHandle: event => {
+        equalsClick: () => dispatch(equalIt()),
+        digitClick: event => {
             dispatch(clickDigit(event.target.value))
         },
         keyPressHandle: event => {
             let keyVal = (String.fromCharCode(event.keyCode));
             if(event.keyCode===13){
                 event.preventDefault()
+                dispatch(equalIt())
             }
             if(digitArr.includes(keyVal)){
                 dispatch(clickDigit(keyVal))
