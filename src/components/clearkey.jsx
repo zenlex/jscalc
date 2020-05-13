@@ -17,7 +17,7 @@ const ClearContainer = props => {
     }, [props.keyDownHandle])
 
         return(
-            <div>
+            <div id='clear-bs'>
                 <ClearKey clickHandle={props.clickHandle} />
                 <BSKey clickHandle={props.backSpace} />
             </div>
