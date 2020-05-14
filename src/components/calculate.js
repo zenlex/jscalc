@@ -1,46 +1,49 @@
+import Decimal from 'decimal.js'
 
-const OPERATIONS='*/+-'
-const NUMBERS=/\d+(\s|[{OPERATIONS}])/
+const OPERATIONS=['*', '/', '+', '-']
 const opFunctions = {
-    '*':(a, b) => {return a * b},
-    '/':(a, b) => { let result = b!==0 ? a / b : alert('no dividing by 0')
-                    return result 
-                },
-    '+':(a, b) => {return a + b},
-    '-':(a, b) => {return a - b}
+    '*':(a, b) => {return a.mul(b)},
+    '/':(a, b) => {return b!==0 ? a.div(b) : alert('no dividing by 0')},
+    '+':(a, b) => {return a.add(b)},
+    '-':(a, b) => {return a.sub(b)}
 }
 
-function calculate(s){
-    console.log('Parsing String: ', s)
-    console.log('String length = ', s.length)
+export default function calculate(s){
     //parse string into array of digits and operators
     let calcArr=[];
     let current = ''
-    for(let i = 0, char; i < s.length -1; i++){
+    let ops=OPERATIONS.join('')
+    for(let i = 0, char; i < s.length; i++){
         char = s.charAt(i);
-        console.log('char = ', char)
-        if (OPERATIONS.indexOf(char) > -1){
-        	console.log('found an operator: ', char)
-            if(current == '' && char == '-'){
-            	console.log('found a negative')
+        if (ops.indexOf(char) > -1){
+            if(current === '' && char === '-'){
                 current = '-'
             } else{
                 calcArr.push(new Decimal(current), char)
                 current = '';
             } 
         } else{
-        		console.log('found a digit or space', char)
-            current = char == ' ' ? current: current += char
-            console.log('new current: ', current)
+            current = char === ' ' ? current : current += char
         }
-        console.log('calcArr = ', calcArr)
+    }
+    //push the final value and move on to reduction
+    if(current !== ''){
+        calcArr.push(new Decimal(current))
     }
 
-
     //iterate from front to back of operations (PEMDAS order)
-    //if the current operator is found, reduce the digits on either side and operator to single digit
-
+    let currentOp;
+    for(let i = 0; i < OPERATIONS.length; i++){
+        for(let j = 0; j < calcArr.length; j++){
+            if(calcArr[j] === OPERATIONS[i]){
+            //if the current operator is found, reduce the digits on either side and operator to single digit
+                currentOp = opFunctions[OPERATIONS[i]]
+                let insert = currentOp(calcArr[j-1], calcArr[j+1])
+                calcArr.splice(j-1, 3, insert)
+            }
+        }
+    } 
+    
     //when array is down to a single value, return the value
-
-    //if iteration stops and array length > 1 return error
+    return calcArr.length > 1 ? 'ERR: Could Not Calculate' : calcArr[0].toString();
 }

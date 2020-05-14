@@ -1,5 +1,6 @@
 
 import { initState, DIGIT, CLEAR, OPERAND, OP_END, EQUALS, BS } from './constants'
+import calculate from './components/calculate.js'
 
 function calcReducer(state = initState, action){
     switch(action.type){
@@ -88,7 +89,7 @@ function calcReducer(state = initState, action){
             }            
             let result = 0;
             if(evalFormula.length > 0){
-                result = Math.round(1000000000000 * eval(evalFormula)) / 1000000000000;
+                result = calculate(evalFormula)
             }
             
             let resultDisplay = evalFormula + '=' + result.toString()
