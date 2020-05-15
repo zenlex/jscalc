@@ -1,5 +1,5 @@
 //Action creators for react/redux - JS Calc App
-import { OPERAND, EQUALS, CLEAR, DIGIT, BS } from './constants'
+import { OPERAND, EQUALS, CLEAR, DIGIT, BS, } from './constants'
 
 function clickDigit(num){
     return{
@@ -34,4 +34,9 @@ function bsIt(){
     }
 }
 
-export { clickOp, equalIt, clearIt, clickDigit, bsIt }
+function toggleKey(keyId){
+    let element = document.getElementById(keyId)
+    element.classList.toggle('key-active')
+    setTimeout(()=>element.classList.toggle('key-active'), 150)
+}
+export { clickOp, equalIt, clearIt, clickDigit, bsIt, toggleKey}

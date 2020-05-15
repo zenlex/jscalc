@@ -1,6 +1,7 @@
 
 import { initState, DIGIT, CLEAR, OPERAND, OP_END, EQUALS, BS } from './constants'
 import calculate from './components/calculate.js'
+import { toggleKey } from './actions';
 
 function calcReducer(state = initState, action){
     switch(action.type){
@@ -56,6 +57,7 @@ function calcReducer(state = initState, action){
             } 
         case BS:
             if(state.evaluated === true){
+                toggleKey('clear')
                 return initState;
             }
             if(state.currNum.length > 1){

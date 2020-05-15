@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
-import {clearIt, equalIt} from '../actions'
+import {clearIt, equalIt, toggleKey} from '../actions'
 import {bsIt} from '../actions'
 
 function ClearKey(props){
@@ -29,10 +29,12 @@ const mapDispatchToProps = dispatch => {
         keyDownHandle: event => {
             if(event.keyCode === 13){
                 event.preventDefault()
+                toggleKey('equals')
                 dispatch(equalIt())
             }
             if(event.keyCode === 8){
                 event.preventDefault()
+                toggleKey('bskey')
                 dispatch(bsIt())
             }
         },
