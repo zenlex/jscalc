@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
-import {clickDigit, equalIt} from '../actions'
+import {clickDigit, equalIt, toggleKey} from '../actions'
 
 function EqualsKey(props){
     return <button id='equals' className='key' onClick={props.onClick}>=</button>
@@ -43,15 +43,20 @@ const mapDispatchToProps = dispatch => {
     return{
         equalsClick: () => dispatch(equalIt()),
         digitClick: event => {
+            toggleKey(event.target.id)
             dispatch(clickDigit(event.target.value))
         },
         keyPressHandle: event => {
             let keyVal = (String.fromCharCode(event.keyCode));
             if(event.keyCode===13){
                 event.preventDefault()
+                toggleKey('equals')
                 dispatch(equalIt())
             }
             if(digitArr.includes(keyVal)){
+                let keyId = idArr[digitArr.indexOf(keyVal)]
+                console.log('Toggling keyId = ', keyId)
+                toggleKey(idArr[digitArr.indexOf(keyVal)])
                 dispatch(clickDigit(keyVal))
             }
         }

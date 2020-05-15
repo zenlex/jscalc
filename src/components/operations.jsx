@@ -1,22 +1,29 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
-import {clickOp} from '../actions'
+import {clickOp, toggleKey} from '../actions'
 import {OPERATORS} from '../constants'
 
+const opsIds={
+    '+':'add',
+    '-':'sub',
+    '*':'multiply',
+    '/':'divide'
+}
+
 function AddKey(props){
-    return <button type='button' tabIndex='-1' className='key' id='add' onClick={() => props.clickOp(props.value)}>+</button>
+    return <button type='button' tabIndex='-1' className='key' id={opsIds[props.value]} onClick={() => props.clickOp(props.value)}>+</button>
 }
 
 function SubKey(props){
-    return <button type='button' tabIndex='-1' className='key' id='subtract' onClick={() => props.clickOp(props.value)}>-</button>
+    return <button type='button' tabIndex='-1' className='key' id={opsIds[props.value]} onClick={() => props.clickOp(props.value)}>-</button>
 }
 
 function MultKey(props){
-    return <button type='button' tabIndex='-1' className='key' id='multiply' onClick={() => props.clickOp(props.value)}>*</button>
+    return <button type='button' tabIndex='-1' className='key' id={opsIds[props.value]} onClick={() => props.clickOp(props.value)}>*</button>
 }
 
 function DivideKey(props){
-    return <button type='button' tabIndex='-1' className='key' id='divide' onClick={() => props.clickOp(props.value)}>/</button>
+    return <button type='button' tabIndex='-1' className='key' id={opsIds[props.value]} onClick={() => props.clickOp(props.value)}>/</button>
 }
 
 function OpsContainer(props){
@@ -36,6 +43,8 @@ function OpsContainer(props){
     )
 }
 
+
+
 function mapDispatchToProps(dispatch){
     return{
         clickOp: (value) => dispatch(clickOp(value)),
@@ -46,6 +55,7 @@ function mapDispatchToProps(dispatch){
                 }   
             
                 if (charPress.match(OPERATORS)){
+                    toggleKey(opsIds[charPress])
                     dispatch(clickOp(charPress))
                 } 
         }
