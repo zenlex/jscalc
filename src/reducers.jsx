@@ -97,7 +97,7 @@ function calcReducer(state = initState, action){
                 setTimeout(()=>alert("ERROR - Could Not Calculate"), 1500)
                 return state;
             }
-            let resultDisplay = evalFormula + '=' + result.toString()
+            let resultDisplay = evalFormula + ' = ' + result.toString()
             return Object.assign({}, state, {display: result, currNum: result.toString(), formula: resultDisplay, evaluated: true})
         
         default:
