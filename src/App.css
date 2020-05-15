@@ -31,7 +31,7 @@
   box-shadow:inset;
 }
 
-.keypad{
+#keypad{
   display:grid;
   grid-template-columns: 225px 75px;
   grid-template-rows: 300px 75px;
@@ -118,7 +118,7 @@
     height:50px;
   }
 
-  .keypad{
+  #keypad{
     display:grid;
     grid-template-columns: 225px 75px;
     grid-template-rows: 220px 55px;
@@ -164,7 +164,7 @@
     width:100px;
   }
 
-  .keypad{
+  #keypad{
     display:grid;
     grid-template-columns: 315px 105px;
     grid-template-rows: 420px 105px;
