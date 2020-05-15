@@ -18,7 +18,10 @@ export default function calculate(s){
         if (ops.indexOf(char) > -1){
             if(current === '' && char === '-'){
                 current = '-'
-            } else{
+        } else if (current.endsWith('e')){
+            //handle scientific notation
+            current += char;
+        } else{ 
                 calcArr.push(new Decimal(current), char)
                 current = '';
             } 
@@ -46,5 +49,5 @@ export default function calculate(s){
     } 
     
     //when array is down to a single value, return the value
-    return calcArr.length > 1 ? 'ERR' : calcArr[0].toString();
+    return calcArr.length > 1 ? 'ERR' : Number(calcArr[0]);
 }
