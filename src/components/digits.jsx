@@ -54,8 +54,6 @@ const mapDispatchToProps = dispatch => {
                 dispatch(equalIt())
             }
             if(digitArr.includes(keyVal)){
-                let keyId = idArr[digitArr.indexOf(keyVal)]
-                console.log('Toggling keyId = ', keyId)
                 toggleKey(idArr[digitArr.indexOf(keyVal)])
                 dispatch(clickDigit(keyVal))
             }
