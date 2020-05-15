@@ -40,10 +40,11 @@ export default function calculate(s){
                 currentOp = opFunctions[OPERATIONS[i]]
                 let insert = currentOp(calcArr[j-1], calcArr[j+1])
                 calcArr.splice(j-1, 3, insert)
+                j = j > 1 ? j - 2 : 0;
             }
         }
     } 
     
     //when array is down to a single value, return the value
-    return calcArr.length > 1 ? 'ERR: Could Not Calculate' : calcArr[0].toString();
+    return calcArr.length > 1 ? 'ERR' : calcArr[0].toString();
 }
