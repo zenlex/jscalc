@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import {clickDigit, equalIt, clickOp, toggleKey, clearIt, bsIt} from '../actions'
 import {OPERATORS, KEYCODES, SHIFTKEYCODES, opsIds} from '../constants'
 
-const digitArr = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0', '.', '='];
-const idArr = ['nine', 'eight', 'seven', 'six', 'five', 'four', 'three', 'two', 'one', 'zero', 'decimal', 'equals'];
+const digitArr = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', '='];
+const idArr = ['seven', 'eight', 'nine', 'four', 'five', 'six', 'one', 'two', 'three', 'zero', 'decimal', 'equals'];
 
 function DigitKey(props){
     return <button className='key' id={props.id} tabIndex='-1' value={props.value} onClick={props.clickHandle}>{props.value}</button>
