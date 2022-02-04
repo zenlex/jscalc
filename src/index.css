@@ -12,10 +12,3 @@ code {
     monospace;
 }
 
-#test-suite{
-  display:none;
-  height:225px;
-  width: 100%;
-  background-color: lightgray;
-}
-
